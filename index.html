@@ -1,0 +1,191 @@
+<div id="memory_map_popup" class="memory-map-popup" style="display: none;">
+    <div class="memory-map-header">
+        <div class="memory-map-handle">
+            <i class="fas fa-brain"></i> Memory Map
+        </div>
+        <div class="memory-map-header-actions">
+            <button id="mm_refresh_btn" class="mm-btn mm-btn-small" title="Force refresh analysis">Refresh Now</button>
+            <div id="memory_map_close" class="memory-map-close fa-solid fa-xmark"></div>
+        </div>
+    </div>
+
+    <div class="memory-map-tabs">
+        <div class="memory-map-tab active" data-tab="mm-tab-timeline">Timeline</div>
+        <div class="memory-map-tab" data-tab="mm-tab-character">Character</div>
+        <div class="memory-map-tab" data-tab="mm-tab-npcs">NPCs</div>
+        <div class="memory-map-tab" data-tab="mm-tab-memory">Memory</div>
+        <div class="memory-map-tab" data-tab="mm-tab-settings">Settings</div>
+    </div>
+
+    <div class="memory-map-content">
+
+        <!-- ═══ TIMELINE ═══ -->
+        <div id="mm-tab-timeline" class="mm-tab-pane active">
+            <div class="mm-section">
+                <h3><i class="fas fa-clock"></i> Time & Scene</h3>
+                <label>
+                    <span class="mm-label-text">Current Date / Time in Scene</span>
+                    <input type="text" id="mm_state_time" class="text_pole" placeholder="e.g. October 15, evening">
+                </label>
+                <label>
+                    <span class="mm-label-text">Inventory / Clothing</span>
+                    <textarea id="mm_state_inventory" class="text_pole" rows="3" placeholder="What characters are wearing, carrying..."></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-coins"></i> Finances</h3>
+                <label>
+                    <span class="mm-label-text">Financial Status</span>
+                    <textarea id="mm_state_finances" class="text_pole" rows="2" placeholder="Salary, expenses, debts, pending payments..."></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-calendar-alt"></i> Upcoming</h3>
+                <label>
+                    <span class="mm-label-text">Holidays & Notable Dates</span>
+                    <input type="text" id="mm_state_holidays" class="text_pole" placeholder="e.g. Christmas in 2 weeks, character's birthday tomorrow">
+                </label>
+            </div>
+        </div>
+
+        <!-- ═══ CHARACTER ═══ -->
+        <div id="mm-tab-character" class="mm-tab-pane">
+            <div class="mm-section">
+                <h3><i class="fas fa-heartbeat"></i> Anxiety / Publicity</h3>
+                <label>
+                    <span class="mm-label-text">Public Attention Meter</span>
+                    <div class="mm-range-wrap">
+                        <input type="range" id="mm_char_anxiety" min="0" max="100" value="0">
+                        <span id="mm_char_anxiety_val" class="mm-range-val">0%</span>
+                    </div>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-medkit"></i> Realistic Health</h3>
+                <label>
+                    <span class="mm-label-text">Physical state, injuries, chronic conditions, consequences</span>
+                    <textarea id="mm_char_health" class="text_pole" rows="3" placeholder="e.g. RED-S symptoms, sprained ankle from scene 4, sleep deprived..."></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-brain"></i> Psych Evaluation</h3>
+                <label>
+                    <span class="mm-label-text">Psychological assessment & consistency check</span>
+                    <textarea id="mm_char_psych" class="text_pole" rows="3" placeholder="Emotional state, alpha/soft balance, noted inconsistencies..."></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-ban"></i> Behavioral Restrictions</h3>
+                <label>
+                    <span class="mm-label-text">Things the character cannot or should not do given their state</span>
+                    <textarea id="mm_char_behavior" class="text_pole" rows="3" placeholder="e.g. Cannot run (broken leg), should not drink (medication)..."></textarea>
+                </label>
+            </div>
+        </div>
+
+        <!-- ═══ NPCs ═══ -->
+        <div id="mm-tab-npcs" class="mm-tab-pane">
+            <div class="mm-section">
+                <h3><i class="fas fa-users"></i> NPC Behavior</h3>
+                <label>
+                    <span class="mm-label-text">How NPCs are currently acting and why</span>
+                    <textarea id="mm_npc_behavior" class="text_pole" rows="4" placeholder="e.g. Barista is flirting — character is visibly attractive; Boss is suspicious — noticed absences..."></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-comments"></i> Realistic Reactions</h3>
+                <label>
+                    <span class="mm-label-text">How NPCs should realistically react to the character</span>
+                    <textarea id="mm_npc_reactions" class="text_pole" rows="4" placeholder="e.g. Strangers stare (character has visible bruises); Colleagues gossip (character missed 3 days)..."></textarea>
+                </label>
+            </div>
+        </div>
+
+        <!-- ═══ MEMORY ═══ -->
+        <div id="mm-tab-memory" class="mm-tab-pane">
+            <div class="mm-section">
+                <h3><i class="fas fa-link"></i> Event Chain</h3>
+                <label>
+                    <span class="mm-label-text">Short chronological chain of key events</span>
+                    <textarea id="mm_mem_chain" class="text_pole" rows="2" placeholder="met at cafe -> argument -> reconciliation -> secret revealed"></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-scroll"></i> Detailed Summary</h3>
+                <label>
+                    <span class="mm-label-text">Chronological summary — only important events</span>
+                    <textarea id="mm_mem_summary" class="text_pole" rows="4" placeholder="Detailed analysis of key plot events..."></textarea>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-eye-slash"></i> Unreliable Memory</h3>
+                <small class="mm-hint">Character's subjective POV — biased, emotional, possibly wrong</small>
+                <label>
+                    <span class="mm-label-text">How the character remembers events</span>
+                    <textarea id="mm_mem_unreliable" class="text_pole" rows="5" placeholder="e.g. 'He definitely started the fight first' (he didn't)..."></textarea>
+                </label>
+            </div>
+        </div>
+
+        <!-- ═══ SETTINGS ═══ -->
+        <div id="mm-tab-settings" class="mm-tab-pane">
+            <div class="mm-section">
+                <h3><i class="fas fa-cog"></i> Extra API</h3>
+                <small class="mm-hint">The secondary AI that analyzes your scene in the background.</small>
+                <label>
+                    <span class="mm-label-text">API Provider</span>
+                    <select id="mm_api_provider" class="text_pole">
+                        <option value="openai">OpenAI (or Compatible)</option>
+                        <option value="anthropic">Anthropic</option>
+                    </select>
+                </label>
+                <label>
+                    <span class="mm-label-text">Endpoint URL</span>
+                    <input type="text" id="mm_api_url" class="text_pole" placeholder="https://api.openai.com/v1/chat/completions">
+                </label>
+                <label>
+                    <span class="mm-label-text">API Key</span>
+                    <input type="password" id="mm_api_key" class="text_pole" placeholder="sk-...">
+                </label>
+                <label>
+                    <span class="mm-label-text">Model</span>
+                    <input type="text" id="mm_api_model" class="text_pole" placeholder="gpt-4o-mini">
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-syringe"></i> Injection</h3>
+                <label>
+                    <span class="mm-label-text">Correction Style</span>
+                    <select id="mm_inject_style" class="text_pole">
+                        <option value="casual">Casual (грубоватая коррекция)</option>
+                        <option value="formal">Formal (system note)</option>
+                    </select>
+                </label>
+                <label class="mm-checkbox-label">
+                    <input type="checkbox" id="mm_auto_inject" checked>
+                    <span>Auto-inject corrections after each message</span>
+                </label>
+                <label class="mm-checkbox-label">
+                    <input type="checkbox" id="mm_macro_enabled" checked>
+                    <span>Enable {{memorymap}} macro</span>
+                </label>
+            </div>
+            <div class="mm-section">
+                <h3><i class="fas fa-bug"></i> Debug</h3>
+                <label class="mm-checkbox-label">
+                    <input type="checkbox" id="mm_api_debug">
+                    <span>Enable debug logging (console)</span>
+                </label>
+                <button id="mm_reset_btn" class="mm-btn mm-btn-danger">Reset All Data for This Chat</button>
+            </div>
+
+            <!-- Corrections preview -->
+            <div class="mm-section">
+                <h3><i class="fas fa-exclamation-triangle"></i> Current Corrections</h3>
+                <small class="mm-hint">Realism violations detected by the analyzer.</small>
+                <textarea id="mm_corrections" class="text_pole" rows="3" placeholder="No corrections needed" readonly></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>
